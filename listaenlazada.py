@@ -7,9 +7,15 @@ from nodo import Nodo
 
 class ListaEnlazada:
     def __init__(self):
+        """
+        Constructor de la clase ListaEnlazada. Inicializa en None el atributo correspondiente al puntero del nodo cabeza de la lista doblemente enlazada.
+        """
         self.nodocabeza = None
 
     def menu(self, band = True):
+        """
+        Menú para el usuario, donde ingresará la opción que desee realizar, y si es necesario ingresará los datos para realizar su opción. Cada opción llamará a su metodo correspondiente
+        """
         while band:
             print("\n\n------------------ Menú de opciones ------------------")
             print("1. Insertar un nodo en una posición de la lista enlazada.")
@@ -28,9 +34,9 @@ class ListaEnlazada:
                 try:
                     index = int(input("\nIngrese la posición en que desea insertar el nodo: "))
                     valor = int(input("Ingrese el valor entero del nodo: "))
+                    self.insertar_nodo(index, valor)
                 except ValueError:
                     print("\n--- Valores no válidos. Intente de nuevo.")
-                self.insertar_nodo(index, valor)
             elif opcion == 2:
                 if self.nodocabeza is None:
                     print("\n--- Error. Lista doblemente enlazada vacía.")
@@ -45,17 +51,17 @@ class ListaEnlazada:
                 if subopcion == 0:
                     try:
                         index = int(input("\nIngrese la posición del nodo que desea eliminar: "))
+                        self.eliminar_nodo(index, None)
                     except ValueError:
                         print("\n--- Índice no válido. Intente de nuevo.")
                         continue
-                    self.eliminar_nodo(index, None)
                 elif subopcion == 1:
                     try:
                         valor = int(input("\nIngrese el valor del nodo que desea eliminar: "))
+                        self.eliminar_nodo(None, valor)
                     except ValueError:
                         print("\n--- Valor no válido. Intente de nuevo.")
                         continue
-                    self.eliminar_nodo(None, valor)
                 else:
                     print("\n--- Opción no válida. Intente de nuevo.")
                     continue
@@ -69,10 +75,10 @@ class ListaEnlazada:
                     continue
                 try:
                     valor = int(input("\nIngrese el valor entero que desea buscar: "))
+                    posiciones = self.buscar_nodo(valor)
                 except ValueError:
                     print("\n--- Opción no válida. Intente de nuevo.")
                     continue
-                posiciones = self.buscar_nodo(valor)
                 if len(posiciones) > 0:
                     print(f"\nPosición(es) del valor {valor} en la lista doblemente enlazada:", end=" ")
                     print(", ".join(posiciones))
@@ -86,6 +92,9 @@ class ListaEnlazada:
                 print("\n--- Opción no válida. Intente de nuevo.")
 
     def insertar_nodo(self, posicion: int, valor: int):
+        """
+        Inserta un nuevo nodo en la posición indicada por el usuario, siempre y cuando sea válida. Al momento de insertalo, moverá una posición a todos los nodos que se encuentren después de el.
+        """
         nodo_nuevo = Nodo(valor)
         if posicion == 0:
             nodo_nuevo.siguiente = self.nodocabeza
@@ -108,6 +117,9 @@ class ListaEnlazada:
         print(f"\nNodo con valor {valor} insertado en la posición {posicion}.")
 
     def eliminar_nodo(self, posicion: int, valor: int):
+        """
+        Este método posee dos variantes, en caso de querer eliminar un nodo por su posición recibirá como parámetros la posición del nodo y None. En caso de querer eliminar un nodo según su contenido, recibirá como parámetros Nonse y el valor del nodo. Eliminará el nodo de la lista cambiando los atributos 'anterior' y 'siguiente' correspondientemente como sea necesario, además actualizará el nodo cabeza de la lista doblemente enlazada si es necesario.
+        """
         if posicion is not None:
             if posicion == 0:
                 if self.nodocabeza is None:
@@ -150,6 +162,9 @@ class ListaEnlazada:
                 print(f"\nNodo con valor {valor} eliminado.")
 
     def revertir_lista(self):
+        """
+        invertir el orden de los nodos en la lista doblemente enlazada, recorriendo toda la lista utilizando el puntero 'actual'
+        """
         if self.nodocabeza is None:
             print("\n--- Error. Lista doblemente enlazada vacía.")
             return
@@ -165,6 +180,9 @@ class ListaEnlazada:
         print("\nLista doblemente enlazada revertida.")
 
     def eliminar_duplicados(self):
+        """
+        Elimina todos los nodos de la lista doblemente enlazada que contengan valores duplicados (valores ya existentes dentro de la lista)
+        """
         if self.nodocabeza is None:
             print("\n--- Error. Lista doblemente enlazada vacía.")
             return
@@ -187,6 +205,9 @@ class ListaEnlazada:
             print("\nDuplicados eliminados de la lista doblemente enlazada.")
 
     def buscar_nodo(self, valor: int):
+        """
+        Busca la posición (o posiciones) de un determinado valor dentro de la lista doblemente enlazada. Retornará una lista con la posicion de los nodos que contengan el mismo valor al buscado. En caso de que la lista se encuentra vacía, no se retornará nada
+        """
         if self.nodocabeza is None:
             print("\n--- Error. Lista doblemente enlazada vacía.")
             return
@@ -201,13 +222,15 @@ class ListaEnlazada:
         return posiciones
 
     def mostrar_lista(self):
+        """
+        Muestra por consola de manera formateada los elemenos de toda la lista 
+        """
         if self.nodocabeza != None:
-            print("\n--- Lista doblemente enlazada\n")
             nodo = self.nodocabeza
-            print(nodo.valor, end=" <-> ")
+            print("\n--- Lista doblemente enlazada\n")
+            print(nodo.valor,end="")
             while nodo.siguiente != None:
                 nodo = nodo.siguiente
-                print(nodo.valor, end=" <-> ")
-            print("None")
+                print(f" <-> {nodo.valor}",end="")
         else:
             print("\n--- Error. Lista doblemente enlazada vacía.")
