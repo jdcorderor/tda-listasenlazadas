@@ -14,7 +14,7 @@ class ListaEnlazada:
 
     def menu(self, band = True):
         """
-        Menú para el usuario, donde ingresará la opción que desee realizar, y si es necesario ingresará los datos para realizar su opción. Cada opción llamará a su metodo correspondiente
+        Menú de opciones para el usuario, donde ingresará la opción que desee implementar, y si es necesario ingresará los datos para ejecutar el método correspondiente.
         """
         while band:
             print("\n\n------------------ Menú de opciones ------------------")
@@ -93,7 +93,7 @@ class ListaEnlazada:
 
     def insertar_nodo(self, posicion: int, valor: int):
         """
-        Inserta un nuevo nodo en la posición indicada por el usuario, siempre y cuando sea válida. Al momento de insertalo, moverá una posición a todos los nodos que se encuentren después de el.
+        Inserta un nuevo nodo en la posición indicada por el usuario, siempre y cuando sea válida. Al momento de insertalo, moverá una posición a todos los nodos que se encuentren después de él.
         """
         nodo_nuevo = Nodo(valor)
         if posicion == 0:
@@ -118,7 +118,7 @@ class ListaEnlazada:
 
     def eliminar_nodo(self, posicion: int, valor: int):
         """
-        Este método posee dos variantes, en caso de querer eliminar un nodo por su posición recibirá como parámetros la posición del nodo y None. En caso de querer eliminar un nodo según su contenido, recibirá como parámetros Nonse y el valor del nodo. Eliminará el nodo de la lista cambiando los atributos 'anterior' y 'siguiente' correspondientemente como sea necesario, además actualizará el nodo cabeza de la lista doblemente enlazada si es necesario.
+        Este método posee dos variantes, en caso de querer eliminar un nodo por su posición recibirá como parámetros la posición del nodo y None. En caso de querer eliminar un nodo según su contenido, recibirá como parámetros None y el valor del nodo. Eliminará el nodo de la lista cambiando los atributos 'anterior' y 'siguiente' correspondientes de la forma en que sea requerido. Además, actualizará el nodo cabeza de la lista doblemente enlazada de ser necesario.
         """
         if posicion is not None:
             if posicion == 0:
@@ -163,7 +163,7 @@ class ListaEnlazada:
 
     def revertir_lista(self):
         """
-        invertir el orden de los nodos en la lista doblemente enlazada, recorriendo toda la lista utilizando el puntero 'actual'
+        Invertir el orden de los nodos en la lista doblemente enlazada, recorriendo toda la lista utilizando el puntero 'actual'.
         """
         if self.nodocabeza is None:
             print("\n--- Error. Lista doblemente enlazada vacía.")
@@ -181,7 +181,7 @@ class ListaEnlazada:
 
     def eliminar_duplicados(self):
         """
-        Elimina todos los nodos de la lista doblemente enlazada que contengan valores duplicados (valores ya existentes dentro de la lista)
+        Elimina todos los nodos de la lista doblemente enlazada que contengan valores duplicados (valores ya existentes dentro de la lista).
         """
         if self.nodocabeza is None:
             print("\n--- Error. Lista doblemente enlazada vacía.")
@@ -206,7 +206,7 @@ class ListaEnlazada:
 
     def buscar_nodo(self, valor: int):
         """
-        Busca la posición (o posiciones) de un determinado valor dentro de la lista doblemente enlazada. Retornará una lista con la posicion de los nodos que contengan el mismo valor al buscado. En caso de que la lista se encuentra vacía, no se retornará nada
+        Busca la posición (o posiciones) de un determinado valor dentro de la lista doblemente enlazada. Retornará una lista con la posición de los nodos que contengan el mismo valor al ingresado. En caso de que la lista se encuentre vacía, no se retornará nada.
         """
         if self.nodocabeza is None:
             print("\n--- Error. Lista doblemente enlazada vacía.")
@@ -223,7 +223,7 @@ class ListaEnlazada:
 
     def mostrar_lista(self):
         """
-        Muestra por consola de manera formateada los elemenos de toda la lista 
+        Muestra por consola de manera formateada los elementos de la lista doblemente enlazada.
         """
         if self.nodocabeza != None:
             nodo = self.nodocabeza
